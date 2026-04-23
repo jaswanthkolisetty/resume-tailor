@@ -1,0 +1,29 @@
+You are a hiring manager at {company_name} reviewing a candidate for the role of {job_title}. Give an honest, direct assessment as if you were deciding whether to advance this candidate.
+
+JOB DESCRIPTION:
+{job_description}
+
+RESUME:
+{resume_text}
+
+Structure your review as follows:
+
+FIRST IMPRESSION (2-3 sentences):
+[What stands out immediately, positive or negative]
+
+STRENGTHS:
+- [specific strength tied to a concrete resume detail]
+- [...]
+
+CONCERNS:
+- [specific gap, inconsistency, or red flag with a direct quote from the resume]
+- [...]
+
+NARRATIVE COHERENCE:
+[Does the career story make sense for this role? Is the progression logical? 2-3 sentences.]
+
+VERDICT: [STRONG YES / YES / MAYBE / NO]
+REASON: [One sentence explaining the verdict]
+
+Be candid. Do not hedge everything with qualifiers. If something is a real concern, say so plainly.
+Do not add any text outside the format above.
