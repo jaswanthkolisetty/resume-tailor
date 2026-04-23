@@ -1,0 +1,190 @@
+\documentclass[letterpaper,10.5pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{textcomp}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-3pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge \scshape JASWANTH KOLISETTY} \\ \vspace{1pt}
+    Frisco, TX $|$ (551) 375-6656 $|$
+    \href{mailto:jaswanthkolisetty@gmail.com}{\underline{jaswanthkolisetty@gmail.com}} $|$
+    \href{https://linkedin.com/in/jaswanthkolisetty}{\underline{linkedin.com/in/jaswanthkolisetty}} $|$
+    \href{https://github.com/jaswanthkolisetty}{\underline{github.com/jaswanthkolisetty}}
+\end{center}
+
+\section{Professional Summary}
+\small{
+Software engineer with experience building AI-powered document processing platforms, RAG pipelines, and LLM-orchestrated workflows in healthcare and financial domains. Hands-on across the full stack, FastAPI backends, React/TypeScript frontends, and AWS cloud infrastructure. Most of my recent work has involved extracting structured data from messy, unstructured documents using OCR, LLMs, and retrieval systems, and turning that into production services that non-technical users can actually interact with. Comfortable working across AI pipelines, backend API development, and cloud infrastructure in regulated environments.
+}
+
+\section{Core Skills}
+\small{
+\textbf{Languages:} Python, TypeScript, Go, Bash, SQL \\
+\textbf{LLMs \& Generative AI:} Claude 3.5 Sonnet, GPT-4o, Gemini, LLaMA 3, RAG, prompt engineering, LangChain, LangGraph, Hugging Face Transformers, Anthropic API, OpenAI API \\
+\textbf{Document Processing \& Retrieval:} OCR (AWS Textract), chunking strategies, embedding generation, hybrid search, cross-encoder reranking, semantic caching, pgvector, vector databases \\
+\textbf{Backend Engineering:} FastAPI (REST APIs, SSE streaming, background tasks), authentication, service orchestration, multi-model fallback chains, retry mechanisms, error handling \\
+\textbf{Frontend:} Next.js, React, TypeScript, responsive UI components, real-time progress tracking, chat interfaces \\
+\textbf{ML \& Deep Learning:} PyTorch, TensorFlow, scikit-learn, CNNs, RNNs, transformer architectures, fine-tuning, transfer learning, NLP, computer vision \\
+\textbf{Model Serving \& Optimization:} vLLM, TensorRT, ONNX, quantization (GGUF, INT8, FP16), model compression, llama.cpp \\
+\textbf{Evaluation \& Responsible AI:} LangSmith, Ragas, DeepEval, pytest-based eval harnesses, bias detection, SHAP, explainability \\
+\textbf{Cloud \& Infrastructure:} AWS (EC2, ECS, EKS, S3, RDS, Lambda, Step Functions, CloudWatch, IAM, Bedrock, Textract), Docker, Kubernetes, Terraform \\
+\textbf{CI/CD:} GitHub Actions, GitLab CI/CD, blue-green deployment \\
+\textbf{Databases:} PostgreSQL, pgvector, Redis, DynamoDB, Snowflake
+}
+
+\section{Professional Experience}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+  {JSP IT Services LLC}{Aug 2025 -- Present}
+  {AI Platform Engineer}{Mountain View, CA}
+  \resumeItemListStart
+    \resumeItem{Built a RAG pipeline for financial document querying using LangGraph to orchestrate Claude 3.5 Sonnet and GPT-4o, and implemented hybrid search with dense embeddings and BM25, cross-encoder reranking, and multi-step answer synthesis that reduced analyst time on recurring data questions from roughly 25 minutes to under 90 seconds.}
+    \resumeItem{Developed the document processing backend: ingestion of complex financial PDFs using AWS Textract for OCR extraction from tables and structured forms, chunking with overlap strategies tuned per document type, and embedding generation stored in a pgvector-backed retrieval index.}
+    \resumeItem{Built and maintained the FastAPI backend powering the platform, including REST APIs for document upload and querying, SSE streaming endpoints for real-time answer generation, authentication, and background task processing for long-running document ingestion jobs.}
+    \resumeItem{Implemented semantic caching for frequently asked query patterns, reducing redundant LLM calls by roughly 40\% and cutting average response latency on repeated queries from \textasciitilde4 seconds to under 800ms.}
+    \resumeItem{Built a responsive chat interface in Next.js and React with TypeScript, including a conversational AI frontend, PDF viewer with highlighted source passages, and real-time progress tracking during document processing.}
+    \resumeItem{Developed a pytest-based evaluation harness integrated with LangSmith that runs retrieval grounding, answer faithfulness, tool-call correctness, and cost/latency benchmarks on every pull request, gating model and prompt changes before they reach production.}
+    \resumeItem{Implemented model fallback chains with retry mechanisms and error handling. If the primary Claude endpoint hits rate limits or latency thresholds, the system automatically falls back to GPT-4o with graceful degradation and logging.}
+    \resumeItem{Contributed to responsible AI monitoring for financial recommendation outputs, implemented SHAP-based feature attribution and fairness checks across protected categories, and presented bias audit summaries to product leads in weekly reviews.}
+    \resumeItem{Deployed the platform on AWS ECS/Fargate with autoscaling, p95 latency held under 2.4 seconds across 120k+ monthly invocations. Provisioned infrastructure with Terraform and owned the GitLab CI/CD pipeline from build through blue-green deployment.}
+  \resumeItemListEnd
+
+\resumeSubheading
+  {Citadel Information Services}{Feb 2025 -- Aug 2025}
+  {AI Software Engineer, Model Platforms}{New Jersey, USA}
+  \resumeItemListStart
+    \resumeItem{Worked on the model-serving backbone for a healthcare document intelligence platform, and built FastAPI services powering retrieval, summarization, and entity-extraction workflows that internal ML and product teams consumed through shared inference APIs.}
+    \resumeItem{Built document processing pipelines using Python/Lambda/Step Functions to ingest, OCR, and index clinical documents (batch records, certificates, regulatory filings) into a pgvector-backed retrieval store with schema validation and error handling.}
+    \resumeItem{Integrated and orchestrated multiple LLM models for different stages of the document pipeline, with intent classification and routing via smaller models, data extraction and validation via Claude/GPT-4o, and configurable fallback chains and retry logic.}
+    \resumeItem{Trained and fine-tuned deep learning models for clinical applications using PyTorch and TensorFlow, including CNN architectures (ResNet, EfficientNet) for medical imaging and transformer models (BioBERT, ClinicalBERT) for clinical text classification.}
+    \resumeItem{Built annotation workflows for clinical training data in collaboration with domain-expert radiologists and pathologists. Quality-control review and inter-annotator agreement scoring maintained label consistency above 94\% on a 12k-example dataset.}
+    \resumeItem{Deployed LLaMA 3 8B and 70B via vLLM on AWS EKS with GPU autoscaling, and applied TensorRT, ONNX export, and quantization (GGUF, INT8) to optimize inference, including a llama.cpp CPU fallback that saved roughly \$7k--8k/month in idle GPU spend.}
+    \resumeItem{Built an evaluation pipeline using LangSmith and Ragas that scored retrieval grounding, answer faithfulness, and PHI leakage on a 2.3k-example clinical golden set, gating every model or prompt change through GitHub Actions before staging.}
+    \resumeItem{Implemented responsible AI practices for the regulated healthcare environment, including bias detection across demographic groups, LIME-based explainability reports for clinical outputs, and model card documentation shared with compliance reviewers.}
+  \resumeItemListEnd
+
+\resumeSubheading
+  {Marmag}{Jul 2022 -- Jun 2023}
+  {Software Engineer, Distributed Systems \& Analytics}{India}
+  \resumeItemListStart
+    \resumeItem{Built and tuned Spark and MapReduce jobs on multi-node clusters processing multi-GB datasets, improving batch execution time by \textasciitilde40\% through partitioning optimization and resource tuning.}
+    \resumeItem{Developed Python data transformation pipelines converting unstructured log files into structured, validated datasets with schema validation and retry logic, consumed by analytics teams and three downstream applications.}
+    \resumeItem{Helped containerize pipeline workloads with Docker and set up CI/CD through GitHub Actions including automated integration tests, moving releases from weekly manual pushes to on-demand deploys.}
+    \resumeItem{Set up Prometheus and Grafana monitoring for cluster health, and configured alerting on memory pressure, disk utilization, and job failure rates.}
+  \resumeItemListEnd
+
+\resumeSubheading
+  {SRM University}{Jun 2021 -- Jun 2022}
+  {Research Intern, Infrastructure \& Analytics}{India}
+  \resumeItemListStart
+    \resumeItem{Built Spark jobs for large-scale data processing research and developed Python ETL pipelines contributing to published work. Helped maintain Docker-based compute infrastructure for reproducible experiments.}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\section{Education}
+\resumeSubHeadingListStart
+\resumeSubheading
+  {Stevens Institute of Technology}{Aug 2023 -- Dec 2024}
+  {Master of Science in Computer Science, GPA 3.9/4.0}{Hoboken, NJ}
+\resumeSubHeadingListEnd
+
+\small{
+Relevant Coursework: Machine Learning, Natural Language Processing, Computer Vision, Distributed Systems
+}
+
+\section{Selected Projects}
+\resumeSubHeadingListStart
+
+\resumeProjectHeading
+  {Transformer Architecture from Scratch -- Python, PyTorch, NumPy}{}
+  \resumeItemListStart
+    \resumeItem{Implemented a GPT-style decoder-only transformer from scratch in PyTorch, including multi-head self-attention, positional encoding, layer normalization, and autoregressive text generation without using Hugging Face or high-level wrappers. Trained on a custom corpus to build intuition around hyperparameter sensitivity and training instability.}
+  \resumeItemListEnd
+
+\resumeProjectHeading
+  {Prompt Consistency Testing Framework -- Python, pytest, OpenAI API, Anthropic API}{}
+  \resumeItemListStart
+    \resumeItem{Built a lightweight framework that tests prompt templates across multiple LLMs (GPT-4o, Claude 3.5 Sonnet, LLaMA 3) for output consistency, format compliance, and behavioral drift across model versions, designed for product teams adopting LLM features with confidence across provider switches.}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\section{Certifications}
+\resumeSubHeadingListStart
+\resumeItemListStart
+  \resumeItem{AWS Certified Solutions Architect -- Associate}
+  \resumeItem{IBM Generative AI Engineering Professional Certificate}
+  \resumeItem{Anthropic Academy: Claude API and Advanced Prompting}
+  \resumeItem{LangChain: Chat with Your Data, DeepLearning.AI}
+  \resumeItem{Multimodal LLaMA 3.2, DeepLearning.AI}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\end{document}
