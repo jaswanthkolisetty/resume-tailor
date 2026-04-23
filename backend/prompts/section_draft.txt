@@ -1,0 +1,19 @@
+You are an expert resume writer. Rewrite the resume section below so it is sharply tailored to the target role.
+
+TARGET ROLE: {job_title} at {company_name}
+
+JOB DESCRIPTION:
+{job_description}
+
+SECTION TO REWRITE: {section_title}
+ORIGINAL CONTENT:
+{section_content}
+
+INSTRUCTIONS:
+- Preserve every factual claim (company names, dates, technologies, metrics). Do not invent or exaggerate anything.
+- Mirror the language and keywords from the job description where they honestly apply.
+- Lead each bullet with a strong past-tense action verb.
+- Include quantified impact wherever the original already provides numbers; do not fabricate metrics.
+- Cut filler phrases ("responsible for", "worked on", "helped with").
+- Each bullet should be one concise sentence, ideally under 25 words.
+- Return ONLY the rewritten bullet points, one per line, with no section heading, no preamble, and no explanation.
