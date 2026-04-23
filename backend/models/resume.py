@@ -69,6 +69,8 @@ class Section(BaseModel):
 class Resume(BaseModel):
     # Everything before \begin{document}, preserved verbatim.
     preamble: str = ""
+    # Content between \begin{document} and the first \section{} (contact block etc.).
+    header_latex: str = ""
     contact: ContactInfo = ContactInfo()
     sections: list[Section] = []
     # Anything after the last section up to \end{document}.

@@ -275,6 +275,8 @@ def parse(tex: str) -> Resume:
     section_re = re.compile(r"\\section\{([^}]+)\}")
     section_matches = list(section_re.finditer(body))
 
+    header_latex = body[: section_matches[0].start()] if section_matches else body
+
     sections: list[Section] = []
     for i, match in enumerate(section_matches):
         title = match.group(1).strip()
@@ -311,6 +313,7 @@ def parse(tex: str) -> Resume:
 
     return Resume(
         preamble=preamble,
+        header_latex=header_latex,
         contact=contact,
         sections=sections,
         postamble=postamble,
