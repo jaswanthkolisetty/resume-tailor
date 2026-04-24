@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { api } from '../api/client'
 import { extractEntryMetas, splitFinalBullets } from '../utils/resumeEntries'
+import { ExportModal } from './ExportModal'
 import { EntryNav, SectionPanel } from './SectionPanel'
 import { SectionSidebar } from './SectionSidebar'
 
@@ -38,6 +39,7 @@ export function WizardScreen({ sessionId, sections, resumeLatex, initialSection,
     Object.fromEntries(sections.map((s) => [s, { ...INITIAL_STATE }])),
   )
   const [entryIndices, setEntryIndices] = useState<Record<string, number>>({})
+  const [showExport, setShowExport] = useState(false)
 
   // Entry metadata parsed once from the original LaTeX
   const entryMetas = useMemo(
@@ -130,13 +132,21 @@ export function WizardScreen({ sessionId, sections, resumeLatex, initialSection,
       {/* Top bar */}
       <header className="h-12 bg-white border-b border-gray-200 flex items-center justify-between px-5 shrink-0">
         <span className="text-sm font-semibold text-gray-800">Resume Tailor</span>
-        <button
-          onClick={() => onReviewReady(sessionId)}
-          disabled={!allAccepted}
-          className="text-sm font-medium bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-200 disabled:text-gray-400 text-white px-4 py-1.5 rounded-lg transition-colors"
-        >
-          Run Review →
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setShowExport(true)}
+            className="text-sm font-medium border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-1.5 rounded-lg transition-colors"
+          >
+            Export
+          </button>
+          <button
+            onClick={() => onReviewReady(sessionId)}
+            disabled={!allAccepted}
+            className="text-sm font-medium bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-200 disabled:text-gray-400 text-white px-4 py-1.5 rounded-lg transition-colors"
+          >
+            Run Review →
+          </button>
+        </div>
       </header>
 
       {/* Main layout */}
@@ -164,6 +174,8 @@ export function WizardScreen({ sessionId, sections, resumeLatex, initialSection,
           />
         </main>
       </div>
+
+      {showExport && <ExportModal sessionId={sessionId} onClose={() => setShowExport(false)} />}
     </div>
   )
 }
