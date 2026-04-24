@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react'
 import { api } from '../api/client'
 
 interface Props {
-  onSessionStart: (sessionId: string, sections: string[]) => void
+  onSessionStart: (sessionId: string, sections: string[], resumeLatex: string) => void
 }
 
 export function SetupScreen({ onSessionStart }: Props) {
@@ -24,7 +24,7 @@ export function SetupScreen({ onSessionStart }: Props) {
         company_name: companyName,
         job_description: jobDescription,
       })
-      onSessionStart(res.session_id, res.sections)
+      onSessionStart(res.session_id, res.sections, resumeLatex)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong')
     } finally {
