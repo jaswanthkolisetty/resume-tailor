@@ -1,11 +1,18 @@
 import { useState } from 'react'
+import { ReviewScreen } from './components/ReviewScreen'
 import { SetupScreen } from './components/SetupScreen'
 import { WizardScreen } from './components/WizardScreen'
 
 type AppState =
   | { screen: 'setup' }
-  | { screen: 'wizard'; sessionId: string; sections: string[]; resumeLatex: string }
-  | { screen: 'review'; sessionId: string }
+  | {
+      screen: 'wizard'
+      sessionId: string
+      sections: string[]
+      resumeLatex: string
+      activeSection?: string
+    }
+  | { screen: 'review'; sessionId: string; sections: string[]; resumeLatex: string }
 
 export default function App() {
   const [state, setState] = useState<AppState>({ screen: 'setup' })
@@ -26,18 +33,40 @@ export default function App() {
         sessionId={state.sessionId}
         sections={state.sections}
         resumeLatex={state.resumeLatex}
-        onReviewReady={(sessionId) => setState({ screen: 'review', sessionId })}
+        initialSection={state.activeSection}
+        onReviewReady={(sessionId) =>
+          setState({
+            screen: 'review',
+            sessionId,
+            sections: state.sections,
+            resumeLatex: state.resumeLatex,
+          })
+        }
       />
     )
   }
 
-  // Review UI — Milestone 11
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <p className="text-gray-500 text-sm">
-        Session <code className="font-mono">{state.sessionId}</code> — review UI coming in
-        Milestone 11
-      </p>
-    </div>
+    <ReviewScreen
+      sessionId={state.sessionId}
+      sections={state.sections}
+      onGoToSection={(sectionTitle) =>
+        setState({
+          screen: 'wizard',
+          sessionId: state.sessionId,
+          sections: state.sections,
+          resumeLatex: state.resumeLatex,
+          activeSection: sectionTitle,
+        })
+      }
+      onBack={() =>
+        setState({
+          screen: 'wizard',
+          sessionId: state.sessionId,
+          sections: state.sections,
+          resumeLatex: state.resumeLatex,
+        })
+      }
+    />
   )
 }
