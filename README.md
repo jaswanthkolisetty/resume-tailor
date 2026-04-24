@@ -4,16 +4,16 @@ A local web app that tailors a LaTeX resume to a specific job posting, section b
 
 ## How it works
 
-1. **Setup** — paste your `.tex` resume source and the job description (title, company, description).
-2. **Wizard** — step through each resume section. The LLM drafts a tailored version, self-critiques it, then rewrites. You can give free-text feedback and regenerate as many times as needed. Accept sections when satisfied.
-3. **Review** — once all sections are accepted, run a combined ATS keyword audit and simulated hiring-manager review. Critique items link back to the relevant wizard section.
-4. **Export** — copy the fully reassembled LaTeX source, ready to compile.
+1. **Setup** : paste your `.tex` resume source and the job description (title, company, description).
+2. **Wizard** : step through each resume section. The LLM drafts a tailored version, self-critiques it, then rewrites. You can give free-text feedback and regenerate as many times as needed. Accept sections when satisfied.
+3. **Review** : once all sections are accepted, run a combined ATS keyword audit and simulated hiring-manager review. Critique items link back to the relevant wizard section.
+4. **Export** : copy the fully reassembled LaTeX source, ready to compile.
 
 ## Requirements
 
-- Python 3.11+
-- Node 18+
-- [Ollama](https://ollama.ai) running locally
+-> Python 3.11+
+-> Node 18+
+-> [Ollama](https://ollama.ai) running locally
 
 ## Ollama model setup
 
@@ -21,7 +21,7 @@ A local web app that tailors a LaTeX resume to a specific job posting, section b
 # Primary model (~4 GB)
 ollama pull qwen2.5:7b-instruct-q4_K_M
 
-# Fallback model (~5 GB) — used automatically if primary is unavailable
+# Fallback model (~5 GB) : used automatically if primary is unavailable
 ollama pull llama3.1:8b-instruct-q4_K_M
 ```
 
