@@ -10,15 +10,25 @@ interface SectionState {
   user_feedback: string
 }
 
+export interface EntryNav {
+  current: number
+  total: number
+  title: string
+  entryFinal: string
+  onPrev: () => void
+  onNext: () => void
+}
+
 interface Props {
   sectionTitle: string
   state: SectionState
+  entryNav?: EntryNav
   onGenerate: () => Promise<void>
   onRefine: (feedback: string) => Promise<void>
   onAccept: () => Promise<void>
 }
 
-export function SectionPanel({ sectionTitle, state, onGenerate, onRefine, onAccept }: Props) {
+export function SectionPanel({ sectionTitle, state, entryNav, onGenerate, onRefine, onAccept }: Props) {
   const [activeTab, setActiveTab] = useState<Tab>('final')
   const [feedback, setFeedback] = useState(state.user_feedback ?? '')
   const [busy, setBusy] = useState(false)
@@ -29,35 +39,22 @@ export function SectionPanel({ sectionTitle, state, onGenerate, onRefine, onAcce
 
   async function handleGenerate() {
     setBusy(true)
-    try {
-      await onGenerate()
-      setActiveTab('final')
-    } finally {
-      setBusy(false)
-    }
+    try { await onGenerate(); setActiveTab('final') } finally { setBusy(false) }
   }
 
   async function handleRefine() {
     setBusy(true)
-    try {
-      await onRefine(feedback)
-      setActiveTab('final')
-    } finally {
-      setBusy(false)
-    }
+    try { await onRefine(feedback); setActiveTab('final') } finally { setBusy(false) }
   }
 
   async function handleAccept() {
     setBusy(true)
-    try {
-      await onAccept()
-    } finally {
-      setBusy(false)
-    }
+    try { await onAccept() } finally { setBusy(false) }
   }
 
+  const finalContent = entryNav ? entryNav.entryFinal : state.final
   const tabContent: Record<Tab, string> = {
-    final: state.final,
+    final: finalContent,
     draft: state.draft,
     critique: state.critique,
   }
@@ -74,12 +71,36 @@ export function SectionPanel({ sectionTitle, state, onGenerate, onRefine, onAcce
         )}
       </div>
 
+      {/* Entry navigation */}
+      {entryNav && hasContent && (
+        <div className="flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+          <button
+            onClick={entryNav.onPrev}
+            disabled={entryNav.current === 0}
+            className="text-gray-400 hover:text-gray-600 disabled:opacity-30 text-lg leading-none"
+          >
+            ‹
+          </button>
+          <div className="flex-1 min-w-0 text-center">
+            <p className="text-xs text-gray-400 mb-0.5">
+              Entry {entryNav.current + 1} of {entryNav.total}
+            </p>
+            <p className="text-sm font-medium text-gray-700 truncate">{entryNav.title}</p>
+          </div>
+          <button
+            onClick={entryNav.onNext}
+            disabled={entryNav.current === entryNav.total - 1}
+            className="text-gray-400 hover:text-gray-600 disabled:opacity-30 text-lg leading-none"
+          >
+            ›
+          </button>
+        </div>
+      )}
+
       {/* Pending state */}
       {state.status === 'pending' && !busy && (
         <div className="flex-1 flex flex-col items-center justify-center gap-3 text-center">
-          <p className="text-sm text-gray-500">
-            Ready to tailor this section to your target role.
-          </p>
+          <p className="text-sm text-gray-500">Ready to tailor this section to your target role.</p>
           <button
             onClick={handleGenerate}
             className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2 rounded-lg transition-colors"
@@ -92,7 +113,7 @@ export function SectionPanel({ sectionTitle, state, onGenerate, onRefine, onAcce
       {/* Generating spinner */}
       {isGenerating && (
         <div className="flex-1 flex items-center justify-center gap-2 text-sm text-gray-400">
-          <span className="animate-spin">◌</span>
+          <span className="animate-spin inline-block">◌</span>
           Generating…
         </div>
       )}
@@ -118,13 +139,10 @@ export function SectionPanel({ sectionTitle, state, onGenerate, onRefine, onAcce
 
           <div className="flex-1 overflow-y-auto rounded-lg border border-gray-200 bg-gray-50 p-4">
             <pre className="text-sm text-gray-800 whitespace-pre-wrap font-sans leading-relaxed">
-              {tabContent[activeTab] || (
-                <span className="text-gray-400 italic">No content yet.</span>
-              )}
+              {tabContent[activeTab] || <span className="text-gray-400 italic">No content yet.</span>}
             </pre>
           </div>
 
-          {/* Feedback + actions */}
           {!isAccepted && (
             <div className="flex flex-col gap-3">
               <textarea
