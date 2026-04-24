@@ -16,6 +16,7 @@ interface Props {
   sessionId: string
   sections: string[]
   resumeLatex: string
+  initialSection?: string
   onReviewReady: (sessionId: string) => void
 }
 
@@ -31,8 +32,8 @@ const INITIAL_STATE: SectionState = {
   user_feedback: '',
 }
 
-export function WizardScreen({ sessionId, sections, resumeLatex, onReviewReady }: Props) {
-  const [activeSection, setActiveSection] = useState(sections[0] ?? '')
+export function WizardScreen({ sessionId, sections, resumeLatex, initialSection, onReviewReady }: Props) {
+  const [activeSection, setActiveSection] = useState(initialSection ?? sections[0] ?? '')
   const [sectionStates, setSectionStates] = useState<Record<string, SectionState>>(() =>
     Object.fromEntries(sections.map((s) => [s, { ...INITIAL_STATE }])),
   )
