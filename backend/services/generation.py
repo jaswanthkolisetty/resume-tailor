@@ -149,12 +149,14 @@ async def draft_section(
 async def critique_section(
     section_title: str,
     section_draft: str,
+    original_content: str,
     job_title: str,
     job_description: str,
 ) -> str:
     prompt = _TMPL["self_critique"].format(
         section_title=section_title,
         section_draft=section_draft,
+        original_content=original_content,
         job_title=job_title,
         job_description=job_description,
     )
@@ -220,6 +222,7 @@ async def run_section_loop(
     critique = await critique_section(
         section_title=section.title,
         section_draft=draft,
+        original_content=content,
         job_title=job_title,
         job_description=job_description,
     )
