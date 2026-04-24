@@ -17,9 +17,6 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/session", tags=["session"])
 
 
-# ─── Schemas ──────────────────────────────────────────────────────────────────
-
-
 class StartRequest(BaseModel):
     resume_latex: str
     job_title: str
@@ -56,9 +53,6 @@ class ReviewResponse(BaseModel):
 
 class ExportResponse(BaseModel):
     latex: str
-
-
-# ─── Helpers ──────────────────────────────────────────────────────────────────
 
 
 def _get_or_404(session_id: str) -> Session:
@@ -113,9 +107,6 @@ def _apply_final(session: Session, section_name: str) -> None:
     elif sec.kind == SectionKind.EDUCATION and sec.education_entries:
         _redistribute(bullets, [e.bullets for e in sec.education_entries])
     # SKILLS / CUSTOM: raw_latex is preserved as-is
-
-
-# ─── Endpoints ────────────────────────────────────────────────────────────────
 
 
 @router.post("/start", response_model=StartResponse)

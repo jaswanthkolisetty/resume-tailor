@@ -17,9 +17,6 @@ from models.resume import (
 logger = logging.getLogger(__name__)
 
 
-# ─── Brace extraction ─────────────────────────────────────────────────────────
-
-
 def _extract_braced(text: str, pos: int) -> tuple[str, int]:
     """Return (inner_content, end_pos) for balanced braces starting at `pos`."""
     if pos >= len(text) or text[pos] != "{":
@@ -55,9 +52,6 @@ def _n_braced_args(text: str, pos: int, n: int) -> tuple[list[str], int]:
     return args, pos
 
 
-# ─── Contact ──────────────────────────────────────────────────────────────────
-
-
 def _parse_contact(block: str) -> ContactInfo:
     info = ContactInfo()
 
@@ -88,8 +82,6 @@ def _parse_contact(block: str) -> ContactInfo:
     return info
 
 
-# ─── Section kind ─────────────────────────────────────────────────────────────
-
 _KIND_MAP: list[tuple[str, SectionKind]] = [
     ("experience", SectionKind.EXPERIENCE),
     ("work history", SectionKind.EXPERIENCE),
@@ -108,9 +100,6 @@ def _detect_kind(title: str) -> SectionKind:
         if keyword in lower:
             return kind
     return SectionKind.CUSTOM
-
-
-# ─── Bullets ──────────────────────────────────────────────────────────────────
 
 
 def _extract_bullets(block: str) -> list[str]:
@@ -138,9 +127,6 @@ def _extract_bullets(block: str) -> list[str]:
         if len(content) > 5:
             bullets.append(content)
     return bullets
-
-
-# ─── Entry parsers ────────────────────────────────────────────────────────────
 
 
 def _split_dates(raw: str) -> tuple[str, str]:
@@ -273,9 +259,6 @@ def _parse_skill_categories(body: str) -> list[SkillCategory]:
         if category and items:
             categories.append(SkillCategory(category=category, items=items))
     return categories
-
-
-# ─── Public API ───────────────────────────────────────────────────────────────
 
 
 def parse(tex: str) -> Resume:

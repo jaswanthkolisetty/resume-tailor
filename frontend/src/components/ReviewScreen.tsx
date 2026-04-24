@@ -27,8 +27,6 @@ interface ParsedHuman {
   reason: string
 }
 
-// ─── Parsers ──────────────────────────────────────────────────────────────────
-
 function parseAts(text: string): ParsedAts {
   const scoreMatch = text.match(/ATS SCORE:\s*(\d+)/)
   const score = scoreMatch ? parseInt(scoreMatch[1]) : null
@@ -90,8 +88,6 @@ function parseHuman(text: string): ParsedHuman {
   }
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
 const VERDICT_STYLE: Record<string, string> = {
   'STRONG YES': 'bg-green-100 text-green-700 border-green-200',
   YES: 'bg-emerald-100 text-emerald-700 border-emerald-200',
@@ -103,8 +99,6 @@ function matchSection(text: string, sections: string[]): string | null {
   const lower = text.toLowerCase()
   return sections.find((s) => lower.includes(s.toLowerCase().split(' ')[0].toLowerCase())) ?? null
 }
-
-// ─── Sub-components ───────────────────────────────────────────────────────────
 
 function CritiqueLine({
   text,
@@ -143,8 +137,6 @@ function ScoreBar({ score }: { score: number }) {
     </div>
   )
 }
-
-// ─── Main component ───────────────────────────────────────────────────────────
 
 export function ReviewScreen({ sessionId, sections, onGoToSection, onBack }: Props) {
   const [loading, setLoading] = useState(true)

@@ -21,9 +21,6 @@ def roundtripped(original: Resume) -> Resume:
     return parse(assemble(original))
 
 
-# ─── Structural round-trip ────────────────────────────────────────────────────
-
-
 def test_roundtrip_section_count(original: Resume, roundtripped: Resume) -> None:
     assert len(roundtripped.sections) == len(original.sections)
 
@@ -34,9 +31,6 @@ def test_roundtrip_section_titles(original: Resume, roundtripped: Resume) -> Non
 
 def test_roundtrip_section_kinds(original: Resume, roundtripped: Resume) -> None:
     assert [s.kind for s in roundtripped.sections] == [s.kind for s in original.sections]
-
-
-# ─── Contact round-trip ───────────────────────────────────────────────────────
 
 
 def test_roundtrip_contact_name(original: Resume, roundtripped: Resume) -> None:
@@ -53,9 +47,6 @@ def test_roundtrip_contact_phone(original: Resume, roundtripped: Resume) -> None
 
 def test_roundtrip_contact_location(original: Resume, roundtripped: Resume) -> None:
     assert roundtripped.contact.location == original.contact.location
-
-
-# ─── Experience round-trip ────────────────────────────────────────────────────
 
 
 def test_roundtrip_experience_count(original: Resume, roundtripped: Resume) -> None:
@@ -92,9 +83,6 @@ def test_roundtrip_modified_bullet(original: Resume) -> None:
     assert rt_section.experience_entries[0].bullets[0] == "MODIFIED BULLET TEXT"
 
 
-# ─── Education round-trip ─────────────────────────────────────────────────────
-
-
 def test_roundtrip_education_institution(original: Resume, roundtripped: Resume) -> None:
     orig = next(s for s in original.sections if s.title == "Education")
     rt = next(s for s in roundtripped.sections if s.title == "Education")
@@ -105,9 +93,6 @@ def test_roundtrip_education_gpa(original: Resume, roundtripped: Resume) -> None
     orig = next(s for s in original.sections if s.title == "Education")
     rt = next(s for s in roundtripped.sections if s.title == "Education")
     assert rt.education_entries[0].gpa == orig.education_entries[0].gpa
-
-
-# ─── Projects round-trip ──────────────────────────────────────────────────────
 
 
 def test_roundtrip_project_count(original: Resume, roundtripped: Resume) -> None:
@@ -123,9 +108,6 @@ def test_roundtrip_project_bullets(original: Resume, roundtripped: Resume) -> No
         assert rt_entry.bullets == orig_entry.bullets
 
 
-# ─── Skills round-trip ────────────────────────────────────────────────────────
-
-
 def test_roundtrip_skill_category_count(original: Resume, roundtripped: Resume) -> None:
     orig = next(s for s in original.sections if s.title == "Core Skills")
     rt = next(s for s in roundtripped.sections if s.title == "Core Skills")
@@ -138,9 +120,6 @@ def test_roundtrip_skill_items(original: Resume, roundtripped: Resume) -> None:
     for orig_cat, rt_cat in zip(orig.skill_categories, rt.skill_categories):
         assert rt_cat.category == orig_cat.category
         assert rt_cat.items == orig_cat.items
-
-
-# ─── Document structure ───────────────────────────────────────────────────────
 
 
 def test_assembled_has_begin_document(original: Resume) -> None:

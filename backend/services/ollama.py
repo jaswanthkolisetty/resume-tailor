@@ -12,9 +12,6 @@ from config import settings
 logger = logging.getLogger(__name__)
 
 
-# ─── Exceptions ───────────────────────────────────────────────────────────────
-
-
 class OllamaError(Exception):
     pass
 
@@ -29,9 +26,6 @@ class OllamaModelNotFoundError(OllamaError):
 
 class OllamaTimeoutError(OllamaError):
     pass
-
-
-# ─── Client ───────────────────────────────────────────────────────────────────
 
 
 class OllamaClient:
@@ -76,8 +70,6 @@ class OllamaClient:
             raise OllamaConnectionError(f"Cannot reach Ollama at {self._base}") from exc
         except httpx.HTTPStatusError as exc:
             raise OllamaError(f"Ollama returned HTTP {exc.response.status_code}") from exc
-
-    # ── Internal helpers ──────────────────────────────────────────────────────
 
     async def _generate_with(self, model: str, prompt: str, system: str) -> str:
         payload: dict[str, Any] = {"model": model, "prompt": prompt, "stream": False}

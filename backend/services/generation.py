@@ -80,9 +80,6 @@ def _get_kind_instructions(section: Section) -> str | None:
     return None  # preserve as-is
 
 
-# ─── Section → plain text ─────────────────────────────────────────────────────
-
-
 def section_to_text(section: Section) -> str:
     """Render a section's structured data as plain text for LLM input."""
     lines: list[str] = []
@@ -121,9 +118,6 @@ def section_to_text(section: Section) -> str:
         lines.append(stripped)
 
     return "\n".join(lines)
-
-
-# ─── Individual generation steps ─────────────────────────────────────────────
 
 
 async def draft_section(
@@ -188,9 +182,6 @@ async def rewrite_section(
     return await ollama.generate(prompt, system=_SYSTEM)
 
 
-# ─── Full section loop ────────────────────────────────────────────────────────
-
-
 async def run_section_loop(
     section: Section,
     job_title: str,
@@ -237,9 +228,6 @@ async def run_section_loop(
         kind_instructions=kind_instructions,
     )
     return draft, critique, final
-
-
-# ─── Review passes ────────────────────────────────────────────────────────────
 
 
 async def run_ats_review(
