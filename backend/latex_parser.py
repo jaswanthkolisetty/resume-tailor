@@ -122,6 +122,21 @@ def _extract_bullets(block: str) -> list[str]:
             bullets.append(content.strip())
         except ValueError:
             logger.warning("Could not parse \\resumeItem at offset %d", m.start())
+    if bullets:
+        return bullets
+    # Fallback: plain \item bullets (non-Jake's-Resume templates)
+    for m in re.finditer(r"\\item\b\s*", block):
+        start = m.end()
+        end = block.find("\n", start)
+        if end == -1:
+            end = len(block)
+        content = block[start:end].strip()
+        content = re.sub(r"\\textbf\{([^}]*)\}", r"\1", content)
+        content = re.sub(r"\\href\{[^}]*\}\{([^}]*)\}", r"\1", content)
+        content = re.sub(r"\\[a-zA-Z]+\{([^}]*)\}", r"\1", content)
+        content = re.sub(r"\\[a-zA-Z&]+\s*", "", content).strip()
+        if len(content) > 5:
+            bullets.append(content)
     return bullets
 
 
@@ -134,13 +149,21 @@ def _split_dates(raw: str) -> tuple[str, str]:
 
 
 def _bullet_region(body: str, after: int) -> list[str]:
-    """Extract bullets from the \resumeItemListStart..End block after `after`."""
+    """Extract bullets from the entry body starting at `after`."""
     next_entry = re.search(r"\\resumeSubheading|\\resumeProjectHeading", body[after:])
     upper = after + next_entry.start() if next_entry else len(body)
     region = body[after:upper]
+    # Jake's Resume style
     ls = region.find(r"\resumeItemListStart")
     le = region.find(r"\resumeItemListEnd")
-    return _extract_bullets(region[ls:le]) if ls != -1 and le != -1 else []
+    if ls != -1 and le != -1:
+        return _extract_bullets(region[ls:le])
+    # Standard itemize style
+    ls2 = region.find(r"\begin{itemize}")
+    le2 = region.find(r"\end{itemize}")
+    if ls2 != -1 and le2 != -1:
+        return _extract_bullets(region[ls2:le2])
+    return _extract_bullets(region)
 
 
 def _parse_experience_entries(body: str) -> list[ExperienceEntry]:
@@ -272,7 +295,7 @@ def parse(tex: str) -> Resume:
     if center_m:
         contact = _parse_contact(center_m.group(1))
 
-    section_re = re.compile(r"\\section\{([^}]+)\}")
+    section_re = re.compile(r"\\section\*?\{([^}]+)\}")
     section_matches = list(section_re.finditer(body))
 
     header_latex = body[: section_matches[0].start()] if section_matches else body

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { api } from '../api/client'
 import { extractEntryMetas, splitFinalBullets } from '../utils/resumeEntries'
 import { ExportModal } from './ExportModal'
-import { EntryNav, SectionPanel } from './SectionPanel'
+import { type EntryNav, SectionPanel } from './SectionPanel'
 import { SectionSidebar } from './SectionSidebar'
 
 interface SectionState {
