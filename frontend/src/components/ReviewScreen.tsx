@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { api } from '../api/client'
+import { ExportModal } from './ExportModal'
 
 interface Props {
   sessionId: string
@@ -148,6 +149,7 @@ export function ReviewScreen({ sessionId, sections, onGoToSection, onBack }: Pro
   const [error, setError] = useState<string | null>(null)
   const [atsText, setAtsText] = useState('')
   const [humanText, setHumanText] = useState('')
+  const [showExport, setShowExport] = useState(false)
 
   useEffect(() => {
     api
@@ -172,7 +174,13 @@ export function ReviewScreen({ sessionId, sections, onGoToSection, onBack }: Pro
           ← Back to wizard
         </button>
         <span className="text-sm font-semibold text-gray-800">Review</span>
-        <div className="w-24" />
+        <button
+          onClick={() => setShowExport(true)}
+          disabled={loading}
+          className="text-sm font-medium border border-gray-300 hover:bg-gray-50 disabled:opacity-40 text-gray-700 px-4 py-1.5 rounded-lg transition-colors"
+        >
+          Export
+        </button>
       </header>
 
       {loading && (
@@ -338,6 +346,8 @@ export function ReviewScreen({ sessionId, sections, onGoToSection, onBack }: Pro
           </div>
         </div>
       )}
+
+      {showExport && <ExportModal sessionId={sessionId} onClose={() => setShowExport(false)} />}
     </div>
   )
 }
