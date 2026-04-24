@@ -15,9 +15,6 @@ def resume() -> Resume:
     return parse(FIXTURE.read_text(encoding="utf-8"))
 
 
-# ─── Top-level structure ──────────────────────────────────────────────────────
-
-
 def test_preamble_captured(resume: Resume) -> None:
     assert r"\documentclass" in resume.preamble
 
@@ -36,9 +33,6 @@ def test_section_titles(resume: Resume) -> None:
     assert "Education" in titles
     assert "Selected Projects" in titles
     assert "Core Skills" in titles
-
-
-# ─── Contact info ─────────────────────────────────────────────────────────────
 
 
 def test_contact_name(resume: Resume) -> None:
@@ -65,9 +59,6 @@ def test_contact_location(resume: Resume) -> None:
     assert resume.contact.location == "Frisco, TX"
 
 
-# ─── Section kinds ────────────────────────────────────────────────────────────
-
-
 def test_experience_kind(resume: Resume) -> None:
     section = next(s for s in resume.sections if s.title == "Professional Experience")
     assert section.kind == SectionKind.EXPERIENCE
@@ -86,9 +77,6 @@ def test_projects_kind(resume: Resume) -> None:
 def test_skills_kind(resume: Resume) -> None:
     section = next(s for s in resume.sections if s.title == "Core Skills")
     assert section.kind == SectionKind.SKILLS
-
-
-# ─── Experience entries ───────────────────────────────────────────────────────
 
 
 @pytest.fixture(scope="module")
@@ -127,9 +115,6 @@ def test_first_experience_bullet_content(experience) -> None:
     assert any("RAG" in b for b in bullets)
 
 
-# ─── Education entries ────────────────────────────────────────────────────────
-
-
 @pytest.fixture(scope="module")
 def education(resume: Resume):
     return next(s for s in resume.sections if s.title == "Education")
@@ -157,9 +142,6 @@ def test_education_dates(education) -> None:
     assert entry.end_date == "Dec 2024"
 
 
-# ─── Project entries ──────────────────────────────────────────────────────────
-
-
 @pytest.fixture(scope="module")
 def projects(resume: Resume):
     return next(s for s in resume.sections if s.title == "Selected Projects")
@@ -181,9 +163,6 @@ def test_first_project_has_bullets(projects) -> None:
     assert len(projects.project_entries[0].bullets) >= 1
 
 
-# ─── Skills ───────────────────────────────────────────────────────────────────
-
-
 @pytest.fixture(scope="module")
 def skills(resume: Resume):
     return next(s for s in resume.sections if s.title == "Core Skills")
@@ -197,9 +176,6 @@ def test_languages_category(skills) -> None:
     lang = next(c for c in skills.skill_categories if c.category == "Languages")
     assert "Python" in lang.items
     assert "Go" in lang.items
-
-
-# ─── Raw LaTeX preservation ───────────────────────────────────────────────────
 
 
 def test_raw_latex_contains_section_header(resume: Resume) -> None:
