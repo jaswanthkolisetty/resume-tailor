@@ -1,4 +1,4 @@
-# ── Python ───────────────────────────────────────────────
+# Python
 __pycache__/
 *.py[cod]
 *.pyd
@@ -9,39 +9,34 @@ build/
 .venv/
 venv/
 
-# ── Environment variables ─────────────────────────────────
+# Environment variables
 .env
 .env.local
 .env.*.local
 
-# ── Logs ─────────────────────────────────────────────────
+# Logs
 *.log
 logs/
 
-# ── Node / Vite ───────────────────────────────────────────
+# Node / Vite
 node_modules/
 frontend/dist/
 
-# ── macOS ─────────────────────────────────────────────────
+# macOS
 .DS_Store
 ._*
 .AppleDouble
 
-# ── IDE ──────────────────────────────────────────────────
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# ── Test / lint caches ───────────────────────────────────
+# Test / lint caches
 .pytest_cache/
 .coverage
 htmlcov/
 .ruff_cache/
 .mypy_cache/
-
-# ── Workflow (not part of codebase) ──────────────────────
-CLAUDE.md
-PROGRESS.md
-.claude-memory/
