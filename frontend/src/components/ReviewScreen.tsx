@@ -12,7 +12,8 @@ interface Props {
 interface ParsedAts {
   score: number | null
   matched: string[]
-  missing: string[]
+  missingHave: string[]
+  missingLack: string[]
   sectionScores: { name: string; score: string; reason: string }[]
   recommendations: string[]
 }
@@ -58,7 +59,8 @@ function parseAts(text: string): ParsedAts {
   return {
     score,
     matched: extractList('KEYWORDS MATCHED'),
-    missing: extractList('KEYWORDS MISSING'),
+    missingHave: extractList('KEYWORDS MISSING — CANDIDATE HAS'),
+    missingLack: extractList('KEYWORDS MISSING — CANDIDATE LACKS'),
     sectionScores,
     recommendations: extractNumberedList('TOP 3 RECOMMENDATIONS'),
   }
@@ -208,13 +210,31 @@ export function ReviewScreen({ sessionId, sections, onGoToSection, onBack }: Pro
                 {ats.score !== null && <ScoreBar score={ats.score} />}
               </div>
 
-              {ats.missing.length > 0 && (
+              {ats.missingHave.length > 0 && (
                 <div>
                   <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                    Missing Keywords
+                    Missing — You Have These (add them)
                   </h3>
                   <div className="flex flex-wrap gap-1.5">
-                    {ats.missing.map((kw) => (
+                    {ats.missingHave.map((kw) => (
+                      <span
+                        key={kw}
+                        className="text-xs bg-yellow-50 text-yellow-700 border border-yellow-200 rounded-full px-2.5 py-0.5"
+                      >
+                        {kw}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {ats.missingLack.length > 0 && (
+                <div>
+                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                    Missing — Genuine Gap (do not fabricate)
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {ats.missingLack.map((kw) => (
                       <span
                         key={kw}
                         className="text-xs bg-red-50 text-red-700 border border-red-200 rounded-full px-2.5 py-0.5"
