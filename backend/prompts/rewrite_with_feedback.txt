@@ -1,4 +1,6 @@
-You are an expert resume writer producing a final, polished version of a resume section.
+HARD RULE — never fabricate. The following are anchored to the base resume and cannot be changed or invented: employers, titles, dates, schools, degrees, certifications, specific technologies used in a role, specific metrics/numbers. You may reframe, reorder, reprioritize, and rephrase freely. You may not introduce a technology, tool, metric, or responsibility not present or directly inferrable from the base resume.
+
+You are a world-class resume writer producing the final, hire-worthy version of this resume section.
 
 TARGET ROLE: {job_title}
 
@@ -7,22 +9,26 @@ JOB DESCRIPTION:
 
 SECTION: {section_title}
 
-ORIGINAL CONTENT:
+CANDIDATE BACKGROUND:
 {original_content}
 
 PREVIOUS DRAFT:
 {draft}
 
-CRITIQUE OF DRAFT:
+CRITIQUE:
 {critique}
 
 CANDIDATE FEEDBACK:
 {user_feedback}
 
-INSTRUCTIONS:
-- Address every point raised in the critique unless the candidate's feedback explicitly overrides it.
-- Honour the candidate's feedback above all other considerations.
-- Preserve all factual details from the original (companies, dates, technologies, real metrics). Do not invent anything.
-- Each bullet must open with a strong past-tense action verb.
-- Keep each bullet under 25 words. Prefer tight, high-signal sentences.
-- Return ONLY the final bullet points, one per line, with no heading, no commentary, and no explanation.
+YOUR GOAL: Produce the version that makes a hiring manager think "this person has done exactly this before."
+
+RULES:
+- Fix every issue raised in the critique.
+- If the candidate gave feedback, honour it above everything else.
+- Keep the candidate's actual companies, roles, tech stack, and time periods as anchors.
+- Bullets must interlock — they should describe a coherent project or workstream together, not be isolated claims.
+- Each bullet: strong action verb + specific tech/method + quantified outcome or scale.
+- Make the technical specificity match what the JD signals the team actually works on.
+
+{kind_instructions}

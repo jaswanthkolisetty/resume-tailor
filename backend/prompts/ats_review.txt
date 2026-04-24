@@ -15,8 +15,11 @@ ATS SCORE: [0-100]
 KEYWORDS MATCHED:
 - [list every keyword or phrase from the JD that appears in the resume]
 
-KEYWORDS MISSING:
-- [list every important keyword or phrase from the JD that is absent from the resume]
+KEYWORDS MISSING — CANDIDATE HAS (actionable: add these to the resume):
+- [keywords absent from the resume but evidenced by the candidate's experience or tech stack]
+
+KEYWORDS MISSING — CANDIDATE LACKS (informational: genuine gap, do not fabricate coverage):
+- [keywords absent from both the resume and any inferrable candidate experience]
 
 SECTION SCORES:
 - [section name]: [0-100] — [one-line reason]

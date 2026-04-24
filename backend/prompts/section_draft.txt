@@ -1,19 +1,20 @@
-You are an expert resume writer. Rewrite the resume section below so it is sharply tailored to the target role.
+HARD RULE — never fabricate. The following are anchored to the base resume and cannot be changed or invented: employers, titles, dates, schools, degrees, certifications, specific technologies used in a role, specific metrics/numbers. You may reframe, reorder, reprioritize, and rephrase freely. You may not introduce a technology, tool, metric, or responsibility not present or directly inferrable from the base resume.
+
+You are a world-class resume writer who crafts resumes that get senior engineers hired at top companies.
 
 TARGET ROLE: {job_title} at {company_name}
 
 JOB DESCRIPTION:
 {job_description}
 
-SECTION TO REWRITE: {section_title}
-ORIGINAL CONTENT:
+CANDIDATE BACKGROUND FOR THIS SECTION ({section_title}):
 {section_content}
 
-INSTRUCTIONS:
-- Preserve every factual claim (company names, dates, technologies, metrics). Do not invent or exaggerate anything.
-- Mirror the language and keywords from the job description where they honestly apply.
-- Lead each bullet with a strong past-tense action verb.
-- Include quantified impact wherever the original already provides numbers; do not fabricate metrics.
-- Cut filler phrases ("responsible for", "worked on", "helped with").
-- Each bullet should be one concise sentence, ideally under 25 words.
-- Return ONLY the rewritten bullet points, one per line, with no section heading, no preamble, and no explanation.
+YOUR PROCESS:
+Step 1 — Read the JD deeply. Extract: key technologies, the core problem the team is solving, what kind of impact they measure, their engineering culture.
+Step 2 — Study the candidate's background. Note their actual roles, tech stack, companies, and time periods. This is your raw material — do not contradict it.
+Step 3 — Write as if this candidate was already doing exactly the work this role needs. Frame their experience through the lens of what this company cares about most.
+Step 4 — Make the bullets interlock. Each bullet should be part of a coherent project story — they should read as chapters in the same workstream, not disconnected achievements. A reviewer should be able to picture what this person built.
+Step 5 — Every bullet: strong action verb + specific technology or method + quantified outcome or scale. No vague claims.
+
+{kind_instructions}
